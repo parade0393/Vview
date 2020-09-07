@@ -6,8 +6,8 @@
     有三个参数(context,AttributeSet,defStyleAttr)在布局文件中使用且使用style时调用
 # 测量模式
     MeasureSpec.AT_MOST 相当于布局中的wrap_content
-    * MeasureSpec.EXATLY 相当于布局中给的确切值或者match_parent
-    * MeasureSpec.UNSPECIFIED 一般很少用，在ScrollVie等滚动视图中使用
+    MeasureSpec.EXATLY 相当于布局中给的确切值或者match_parent
+    MeasureSpec.UNSPECIFIED 一般很少用，在ScrollVie等滚动视图中使用
 # 经常使用方法
     onMeasure 测量
     onDraw 绘制
