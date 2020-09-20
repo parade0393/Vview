@@ -1,10 +1,7 @@
 package me.parade.study.view
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.RectF
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 
@@ -33,7 +30,14 @@ class QQStepView @JvmOverloads constructor(
     private var mStepTextSize = 0
     private var mStepTextColor = 0
 
+
     private val mOuterPaint:Paint = Paint()
+    private val mInnerPaint:Paint = Paint()
+    private val mTextPaint:Paint = Paint()
+    private val mRPaint = Paint()
+    private val mAPaint = Paint()
+    private var mStepMax:Int = 0
+    private var mCurrentStep = 0
 
     init {
         attrs?.let {
@@ -54,7 +58,28 @@ class QQStepView @JvmOverloads constructor(
             mOuterPaint.isAntiAlias = true
             mOuterPaint.strokeWidth = mBorderWidth.toFloat()
             mOuterPaint.color = mOuterColor
-            mOuterPaint.style = Paint.Style.STROKE//画笔是实心
+            mOuterPaint.style = Paint.Style.STROKE//画笔是空心
+            mOuterPaint.strokeCap = Paint.Cap.ROUND
+
+            mInnerPaint.isAntiAlias = true
+            mInnerPaint.strokeWidth = mBorderWidth.toFloat()
+            mInnerPaint.color = mInnerColor
+            mInnerPaint.style = Paint.Style.STROKE//画笔是空心
+            mInnerPaint.strokeCap = Paint.Cap.ROUND
+
+            mTextPaint.isAntiAlias = true
+            mTextPaint.color = mStepTextColor
+            mTextPaint.textSize = mStepTextSize.toFloat()
+
+            mRPaint.isAntiAlias = true
+            mRPaint.strokeWidth = 1F
+            mRPaint.color = Color.BLACK
+            mRPaint.style = Paint.Style.STROKE
+
+            mAPaint.isAntiAlias = true
+            mAPaint.strokeWidth = 1F
+            mAPaint.color = Color.RED
+            mAPaint.style = Paint.Style.STROKE
         }
     }
 
@@ -82,10 +107,31 @@ class QQStepView @JvmOverloads constructor(
         val rectF = RectF((mBorderWidth/2).toFloat(),(mBorderWidth/2).toFloat(), (width-mBorderWidth/2).toFloat(),  (width-mBorderWidth/2).toFloat())
         //第3个参数为true的时候画显示空缺区域的边界半径以封闭圆弧(圆弧加半径)，fase则只画圆弧，不画半径
         canvas?.drawArc(rectF, 135F, 270F,false,mOuterPaint)
-        //6.2画内圆弧
 
+        val ourRc = Rect(0,0,width,height)
+        canvas?.drawRect(ourRc,mRPaint)
+        canvas?.drawRect(rectF,mAPaint)
+        //6.2画内圆弧,进度是由使用者设置的
+        if (mStepMax == 0) else{
+            val sweepAngle = mCurrentStep/mStepMax.toFloat()
+            canvas?.drawArc(rectF, 135F, 270F*sweepAngle,false,mInnerPaint)
+        }
 
         //6.3画文字
+        val stepText = "$mCurrentStep"
+        val fontMetrics = mTextPaint.fontMetrics
+        val textBounds = Rect()
+        mTextPaint.getTextBounds(stepText,0,stepText.length,textBounds)
+        canvas?.drawText(stepText,(width/2-textBounds.width()/2).toFloat(),width/2+(fontMetrics.bottom-fontMetrics.top)/2 - fontMetrics.bottom,mTextPaint)
+    }
+
+    @Synchronized fun  setStepMax(stepMax:Int){
+        this.mStepMax = stepMax
+    }
+
+    @Synchronized fun setCurrentStep(currentStep:Int){
+        this.mCurrentStep = currentStep
+        invalidate()
     }
 
 }
