@@ -22,8 +22,9 @@ class ColorTrackTextView @JvmOverloads constructor(
     private lateinit var mNormalPaint: Paint
     private lateinit var mChangePaint: Paint
 
-    private val mCurrentProgress = 0.5F
+    private var mCurrentProgress = 0.0F
     private lateinit var rect: Rect
+    private var mDirection = Direction.LEFT_TO_RIGHT
 
     init {
         attrs?.let {
@@ -48,27 +49,19 @@ class ColorTrackTextView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        val middle = mCurrentProgress * width
+        if (mDirection == Direction.LEFT_TO_RIGHT){//做变色右不变色
+            //绘制变色
+            drawText(canvas,mChangePaint,0F,middle)
 
-//        val middle = mCurrentProgress * width
+            //绘制不变色
+            drawText(canvas,mNormalPaint,middle,width.toFloat())
+        }else{
+            drawText(canvas,mChangePaint,width-middle,width.toFloat())
 
-       /* canvas?.save()
-        //绘制不变色
-        canvas?.clipRect(0F,0F,middle,height.toFloat())
-        val toString = text.toString()
-        mNormalPaint.getTextBounds(text,0,text.length,rect)//文字最小区域
-        val fontMetrics = mNormalPaint.fontMetrics
-        val fl = height / 2 + (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom//文字baseline
-        canvas?.drawText(toString,(width/2-rect.width()/2).toFloat(),fl,mNormalPaint)
-        canvas?.restore()*/
-        drawText(canvas,mNormalPaint,0F,mCurrentProgress*width)
-
-        //绘制变色
-        /*canvas?.save()
-        canvas?.clipRect(middle,0F,width.toFloat(),height.toFloat())
-        canvas?.drawText(toString,(width/2-rect.width()/2).toFloat(),fl,mChangePaint)
-        canvas?.restore()*/
-        drawText(canvas,mChangePaint,mCurrentProgress*width,width.toFloat())
-
+            //绘制不变色
+            drawText(canvas,mNormalPaint,0F,width-middle)
+        }
 
     }
 
@@ -92,5 +85,20 @@ class ColorTrackTextView @JvmOverloads constructor(
         val fl = height / 2 + (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom//文字baseline
         canvas?.drawText(toString,(width/2-rect.width()/2).toFloat(),fl,paint)
         canvas?.restore()
+    }
+
+    fun setProgress(progress:Float){
+        this.mCurrentProgress = progress
+        invalidate()
+    }
+
+    fun setDirection(direction: Direction){
+        this.mDirection = direction
+    }
+
+
+    enum class Direction{
+        LEFT_TO_RIGHT,
+        RIGHT_TO_LEFT
     }
 }

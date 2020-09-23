@@ -27,6 +27,26 @@ class MainActivity : AppCompatActivity() {
 
         animator.start()*/
 
+        button.setOnClickListener {
+            colorView.setDirection(ColorTrackTextView.Direction.LEFT_TO_RIGHT)
+            val animator = ObjectAnimator.ofFloat(0F, 1F)
+            animator.duration = 2000L
+            animator.addUpdateListener {
+                val animatedValue = it.animatedValue as Float
+                colorView.setProgress(animatedValue)
+            }
+            animator.start()
+        }
 
+        button2.setOnClickListener {
+            colorView.setDirection(ColorTrackTextView.Direction.RIGHT_TO_LEFT)
+            val animator = ObjectAnimator.ofFloat(0F, 1F)
+            animator.duration = 2000L
+            animator.addUpdateListener {
+                val animatedValue = it.animatedValue as Float
+                colorView.setProgress(animatedValue)
+            }
+            animator.start()
+        }
     }
 }
