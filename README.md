@@ -23,10 +23,6 @@
 #### onMeasure
 
     保存宽高 setMeasuredDimension(width,height) onMeasure最后一定要调这个方法，保存宽高
-    获取宽高 
-    Rect rect = new Rect()
-    mPaint.getTextBounds(mText,0,mText.length,rect)
-    width = rect.width()
 
 #### 为什么不能在子线程中更新UI
 
@@ -45,4 +41,5 @@
 performTraversals非常重要的方法，invalidate会调用这个方法，这个方法又会调用performMeasure(),performLayout()和performDraw()
 
 invalidate 会一路网上跑，跑到最上层，然后再往下画,它会牵连着整个layout布局中的view
+
 
