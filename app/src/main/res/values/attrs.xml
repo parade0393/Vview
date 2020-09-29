@@ -13,4 +13,9 @@
         <attr name="originalColor" format="color"/>
         <attr name="changeColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="ColorTrackTextViewJava">
+        <attr name="cmChangeTextColor" format="color" />
+        <attr name="cmOriginTextColor" format="color" />
+    </declare-styleable>
 </resources>

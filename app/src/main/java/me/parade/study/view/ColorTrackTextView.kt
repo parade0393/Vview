@@ -4,7 +4,6 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
-import android.graphics.RectF
 import android.util.AttributeSet
 import android.util.Log
 import androidx.appcompat.widget.AppCompatTextView
@@ -19,7 +18,6 @@ class ColorTrackTextView : AppCompatTextView {
     private var mChangePaint: Paint
 
     private var mCurrentProgress = 0.5F
-    private lateinit var rect: Rect
     private var mDirection = Direction.LEFT_TO_RIGHT
 
 
@@ -36,27 +34,25 @@ class ColorTrackTextView : AppCompatTextView {
         )
         val changeColor =
             array.getColor(R.styleable.ColorTrackTextView_changeColor, textColors.defaultColor)
+        array.recycle()
         mNormalPaint = getPaintByColor(originColor)
         mChangePaint = getPaintByColor(changeColor)
-
-        array.recycle()
     }
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        val middle = mCurrentProgress * width
-        if (mDirection == Direction.LEFT_TO_RIGHT){//做变色右不变色
-            Log.d("TAG", "onDraw: LEFT_TO_RIGHT")
+        val middle = (mCurrentProgress * width ).toInt()
+        if (mDirection == Direction.LEFT_TO_RIGHT){//左变色右不变色
+
             //绘制变色
-            drawText(canvas,mChangePaint,0,middle.toInt())
+            drawText(canvas,mChangePaint,0,middle)
 
             //绘制不变色
-            drawText(canvas,mNormalPaint,middle.toInt(),width)
+            drawText(canvas,mNormalPaint,middle,width)
         }else{
-            Log.d("TAG", "onDraw: RIGHT_TO_LEFT")
-            drawText(canvas,mChangePaint,(width-middle).toInt(),width)
+            drawText(canvas,mChangePaint,width-middle,width)
 
             //绘制不变色
-            drawText(canvas,mNormalPaint,0,(width-middle).toInt())
+            drawText(canvas,mNormalPaint,0,width-middle)
         }
 
     }
@@ -70,26 +66,28 @@ class ColorTrackTextView : AppCompatTextView {
         }
     }
 
-    private fun drawText(canvas: Canvas?,paint: Paint,start:Int,end:Int){
+    @Synchronized private fun drawText(canvas: Canvas?, paint: Paint, start:Int, end:Int){
         canvas?.save()
         val rect = Rect(start,0,end,height)
         //绘制不变色
         canvas?.clipRect(rect)
-        val toString = text.toString()
+        val text = text.toString()
        val  bounds = Rect()
         paint.getTextBounds(text,0,text.length,bounds)//文字最小区域
-        val fontMetrics = paint.fontMetrics
-        val fl = height / 2 + (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom//文字baseline
-        canvas?.drawText(toString,(width/2-rect.width()/2).toFloat(),fl,paint)
+        val x = width/2 - bounds.width()/2
+        val fontMetrics = paint.fontMetricsInt
+        val dy = (fontMetrics.bottom-fontMetrics.top)/2 - fontMetrics.bottom
+        val baseline = height/2 + dy
+        canvas?.drawText(text,x.toFloat(),baseline.toFloat(),paint)
         canvas?.restore()
     }
 
-    fun setProgress(progress:Float){
+    @Synchronized fun setCurrentProgress(progress:Float){
         this.mCurrentProgress = progress
         invalidate()
     }
 
-    fun setDirection(direction: Direction){
+    @Synchronized fun setDirection(direction: Direction){
         this.mDirection = direction
     }
 
@@ -99,11 +97,11 @@ class ColorTrackTextView : AppCompatTextView {
         RIGHT_TO_LEFT
     }
 
-    fun setChangeColor(changeColor:Int){
+    @Synchronized fun setChangeColor(changeColor:Int){
         this.mChangePaint.color = changeColor
     }
 
-    fun setOriginColor(originColor:Int){
+    @Synchronized fun setOriginColor(originColor:Int){
         this.mNormalPaint.color = originColor
     }
 }

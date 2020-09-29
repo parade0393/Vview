@@ -1,2 +1,4 @@
+include ':common'
+include ':calendar'
 include ':app'
 rootProject.name = "Vview"
