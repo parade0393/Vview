@@ -38,6 +38,8 @@ class QQStepView @JvmOverloads constructor(
     private val mAPaint = Paint()
     private var mStepMax:Int = 0
     private var mCurrentStep = 0
+    private var rectOuter = RectF()
+    private val textBound = Rect()
 
     init {
         attrs?.let {
@@ -101,28 +103,28 @@ class QQStepView @JvmOverloads constructor(
         //6.1 画最外圆弧 ，遇见的问题，圆弧闭合了，是以为第3个参数应为false
         //边缘没显示完整：因为描边也有宽度
 
-        //解决边缘没有显示完整
-        val center = width/2
-        val radius = width/2 - mBorderWidth/2//left = center-radius  right=center+radius
-        val rectF = RectF((mBorderWidth/2).toFloat(),(mBorderWidth/2).toFloat(), (width-mBorderWidth/2).toFloat(),  (width-mBorderWidth/2).toFloat())
-        //第3个参数为true的时候画显示空缺区域的边界半径以封闭圆弧(圆弧加半径)，fase则只画圆弧，不画半径
-        canvas?.drawArc(rectF, 135F, 270F,false,mOuterPaint)
+        rectOuter.set(0F,0F,width.toFloat(),height.toFloat())
+        canvas?.drawRect(rectOuter,mRPaint)//画最外矩形，调试看
 
-        val ourRc = Rect(0,0,width,height)
-        canvas?.drawRect(ourRc,mRPaint)
-        canvas?.drawRect(rectF,mAPaint)
+        rectOuter.set(mBorderWidth/2.toFloat(),mBorderWidth/2.toFloat(),(width-mBorderWidth/2).toFloat(),(height-mBorderWidth/2).toFloat())
+        //第3个参数为true的时候画显示空缺区域的边界半径以封闭圆弧(圆弧加半径)，fase则只画圆弧，不画半径
+        canvas?.drawArc(rectOuter, 135F, 270F,false,mOuterPaint)
+
+
+        canvas?.drawRect(rectOuter,mAPaint)//画外圆弧的矩形，调试看
         //6.2画内圆弧,进度是由使用者设置的
-        if (mStepMax == 0) else{
+
+        if (mStepMax != 0) {
+            mCurrentStep = if (mCurrentStep>mStepMax)mStepMax else mCurrentStep
             val sweepAngle = mCurrentStep/mStepMax.toFloat()
-            canvas?.drawArc(rectF, 135F, 270F*sweepAngle,false,mInnerPaint)
+            canvas?.drawArc(rectOuter, 135F, 270F*sweepAngle,false,mInnerPaint)
         }
 
         //6.3画文字
         val stepText = "$mCurrentStep"
         val fontMetrics = mTextPaint.fontMetrics
-        val textBounds = Rect()
-        mTextPaint.getTextBounds(stepText,0,stepText.length,textBounds)
-        canvas?.drawText(stepText,(width/2-textBounds.width()/2).toFloat(),width/2+(fontMetrics.bottom-fontMetrics.top)/2 - fontMetrics.bottom,mTextPaint)
+        mTextPaint.getTextBounds(stepText,0,stepText.length,textBound)
+        canvas?.drawText(stepText,(width/2-textBound.width()/2).toFloat(),width/2+(fontMetrics.bottom-fontMetrics.top)/2 - fontMetrics.bottom,mTextPaint)
     }
 
     @Synchronized fun  setStepMax(stepMax:Int){
