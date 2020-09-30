@@ -66,7 +66,7 @@ class ColorTrackTextView : AppCompatTextView {
         }
     }
 
-    @Synchronized private fun drawText(canvas: Canvas?, paint: Paint, start:Int, end:Int){
+     private fun  drawText(canvas: Canvas?, paint: Paint, start:Int, end:Int){
         canvas?.save()
         val rect = Rect(start,0,end,height)
         //绘制不变色
@@ -82,7 +82,7 @@ class ColorTrackTextView : AppCompatTextView {
         canvas?.restore()
     }
 
-    @Synchronized fun setCurrentProgress(progress:Float){
+    @Synchronized fun  setCurrentProgress(progress:Float){
         this.mCurrentProgress = progress
         invalidate()
     }

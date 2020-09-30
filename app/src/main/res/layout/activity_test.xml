@@ -7,16 +7,10 @@
     android:orientation="vertical"
     tools:context=".TestActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <me.parade.study.view.Progressbar
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:circleProgressNormalColor="@color/colorAccent"
+        app:circleProgressBorderWidth="4dp"/>
 
 </LinearLayout>

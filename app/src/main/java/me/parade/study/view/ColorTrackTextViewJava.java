@@ -14,7 +14,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 /**
  * @author : parade
  * date : 2020/9/29
- * description :
+ * description :颜色渐变TextView
  */
 public class ColorTrackTextViewJava extends AppCompatTextView {
 

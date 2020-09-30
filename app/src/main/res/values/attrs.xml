@@ -18,4 +18,18 @@
         <attr name="cmChangeTextColor" format="color" />
         <attr name="cmOriginTextColor" format="color" />
     </declare-styleable>
+    
+    <declare-styleable name="Progressbar">
+        <!-- 圆环边框宽度 -->
+        <attr name="circleProgressBorderWidth" format="dimension"/>
+        <!-- 圆环正常颜色 -->
+        <attr name="circleProgressNormalColor" format="color"/>
+        <!-- 进度条颜色 -->
+        <attr name="circleProgressbarColor" format="color"/>
+        <!-- 进度文字字体大小 -->
+        <attr name="circleProgressTextSize" format="dimension"/>
+        <!-- 进度文字字体颜色 -->
+        <attr name="circleProgressTextColor" format="color"/>
+        
+    </declare-styleable>
 </resources>

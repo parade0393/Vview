@@ -9,6 +9,9 @@ import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_view_pager.*
 import java.lang.Exception
 
+/**
+ *颜色渐变TextView集合ViewPager
+ */
 class ViewPagerActivity : AppCompatActivity() {
 
     private val titleList = arrayOf("直播","推荐","视频","图片","段子","精华")
