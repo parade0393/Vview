@@ -32,4 +32,10 @@
         <attr name="circleProgressTextColor" format="color"/>
         
     </declare-styleable>
+    
+    <declare-styleable name="RatingBar">
+        <attr name="rb_drawable_normal" format="reference"/>
+        <attr name="rb_drawable_selected" format="reference"/>
+        <attr name="starNumber" format="integer"/>
+    </declare-styleable>
 </resources>
