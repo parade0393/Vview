@@ -1,11 +1,13 @@
 package me.parade.study.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -18,7 +20,7 @@ import androidx.annotation.Nullable;
 public class RatingBar extends View {
 
     private Bitmap mRatingNormal,mRatingSelected;
-    private int mRatingNumber;
+    private int mRatingNumber,mCurrentGrade;
 
     public RatingBar(Context context) {
         this(context,null);
@@ -58,8 +60,32 @@ public class RatingBar extends View {
     protected void onDraw(Canvas canvas) {
         for (int i = 0; i < mRatingNumber; i++) {
             int x = i*mRatingNormal.getWidth();
-            canvas.drawBitmap(mRatingNormal,x,0,null);
+            if (mCurrentGrade>i){
+                canvas.drawBitmap(mRatingSelected,x,0,null);
+            }else {
+                canvas.drawBitmap(mRatingNormal,x,0,null);
+            }
         }
 
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_MOVE:
+                float x = event.getX();
+                int currentGrade = (int) (x/mRatingNormal.getWidth()+1);
+                if (currentGrade<0){currentGrade = 0;}
+                if (currentGrade>mRatingNumber){currentGrade = mRatingNumber;}
+                if (currentGrade == mCurrentGrade) return true;//相同分数不再调用invalidate,减少调用onDraw()
+                mCurrentGrade = currentGrade;
+                invalidate();//调用onDraw() 尽量减少调用onDraw()的调用，因为onDraw()会向上找，调用onDraw()
+                break;
+        }
+
+
+        return true;
     }
 }

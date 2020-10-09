@@ -38,4 +38,10 @@
         <attr name="rb_drawable_selected" format="reference"/>
         <attr name="starNumber" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="LetterIndexBar">
+        <attr name="letterTextColor" format="color"/>
+        <attr name="letterSelectedColor" format="color"/>
+        <attr name="letterTextSize" format="dimension"/>
+    </declare-styleable>
 </resources>
