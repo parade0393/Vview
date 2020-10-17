@@ -44,4 +44,10 @@
         <attr name="letterSelectedColor" format="color"/>
         <attr name="letterTextSize" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="MyTagLayout">
+    <!--   子view之间的间距，默认10dp     -->
+        <attr name="tag_interval_between_horizontal" format="dimension"/>
+        <attr name="tag_interval_between_vertical" format="dimension"/>
+    </declare-styleable>
 </resources>

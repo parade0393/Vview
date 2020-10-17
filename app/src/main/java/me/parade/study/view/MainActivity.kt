@@ -1,22 +1,32 @@
 package me.parade.study.view
 
 import android.animation.ObjectAnimator
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
+import android.widget.DatePicker
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-
+private const val TAG = "parade0393"
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private  var timer: Timer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+       /* Log.d(TAG, "onCreate: ${btnStartStep.measuredHeight}")//0
+        btnStartStep.post {
+            Log.d(TAG, "post: ${btnStartStep.measuredHeight}")//126
+        }*/
 
         initEvent()
     }
@@ -29,6 +39,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnProgress.setOnClickListener(this)
         btnShapeChange.setOnClickListener(this)
         btnCancelShapeChange.setOnClickListener(this)
+        btnTime.setOnClickListener(this)
+        btnTest.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -90,6 +102,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                //取消定时器
                timer?.cancel()
            }
+
+           R.id.btnTime -> {
+               val instance = Calendar.getInstance()
+               DatePickerDialog(
+                   this,
+                   0,
+                   { _, year, month, dayOfMonth ->
+                       Toast.makeText(this, "year:$year,month:$month,day:$dayOfMonth", Toast.LENGTH_SHORT).show()
+                   },
+                   instance.get(Calendar.YEAR),
+                   instance.get(Calendar.MONTH),
+                   instance.get(Calendar.DAY_OF_MONTH)
+               ).show()
+           }
+           R.id.btnTest->{
+               startActivity(Intent(this,TestActivity::class.java))
+           }
        }
     }
 
@@ -114,4 +143,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return (pxValue/fontScale+0.5f).toInt()
     }
 
+    override fun onResume() {
+//        Log.d(TAG, "onResume before: ${btnStartStep.measuredHeight}")//0
+        super.onResume()
+//        Log.d(TAG, "onResume after: ${btnStartStep.measuredHeight}")//0
+    }
 }

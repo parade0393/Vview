@@ -104,4 +104,6 @@ class ColorTrackTextView : AppCompatTextView {
     @Synchronized fun setOriginColor(originColor:Int){
         this.mNormalPaint.color = originColor
     }
+
+
 }

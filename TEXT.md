@@ -55,4 +55,6 @@ private fun px2sp(context: Context,pxValue:Float):Int{
     return (pxValue/fontScale+0.5f).toInt()
 }
 ```
-                                 
+wigth和height值是包括padding的,并且ViewGroup默认的LayoutPaams默认没有margin，实现marginn，需要重写`generateLayoutParams`方法，使用系统提供的MarginLayoutParams，
+自定义的view默认都不支持wrap_content
+getmeasureWidth和getWidth默认情况值是一样的，onMeasure后getMeasure才有值，onLayout之后getWidth才有值(getRight-getWidth),也就是说在摆放子view的之后，故意改变layout的参数，那么getmeasureWidth和getWidth就不一样了
