@@ -16,9 +16,8 @@ import java.util.List;
  * description :简易流式布局
  */
 public class MyTagLayout extends ViewGroup {
-    private static final String TAG = "MyTagLayout";
     //总的视图集合
-    private List<List<View>> mChildViews = new ArrayList<>();
+    private final List<List<View>> mChildViews = new ArrayList<>();
     //每一行的视图集合
     List<View> lineChildViews = new ArrayList<View>();
 

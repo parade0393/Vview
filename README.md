@@ -1,6 +1,6 @@
 # Vview
 
-自定义view的学习过程，希望可以坚持下来,学习 1.ActivityThread,Binder，WindowManager
+自定义view的学习过程，注释很详细，看到的初学者也可通过这个工程学习，希望可以坚持下来,学习 1.ActivityThread,Binder，WindowManager
 
 #### 构造函数何时使用
 
