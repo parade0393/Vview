@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:showDividers="middle"
+    android:divider="@drawable/divider"
+    tools:context=".TextViewActivity">
+
+    <me.parade.study.view.CombineTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:prefix="*"
+        android:textSize="16sp"
+        app:middle_text="姓名"
+        app:middle_text_color="@color/colorPrimary"/>
+
+    <me.parade.study.view.CombineTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:prefix="标题&#8195;&#8195;&#8195;&#8195;"
+        app:prefix_text_color="@android:color/darker_gray"
+        android:text="这是文字内容"/>
+
+    <me.parade.study.view.CombineTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:prefix="起始时间&#8195;&#8195;"
+        app:prefix_text_color="@android:color/darker_gray"
+        android:text="我们是对齐的"/>
+
+    <me.parade.study.view.CombineTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:rest_intent_space="6"
+        app:prefix="参阅人员：&#8195;"
+        android:lineSpacingExtra="5dp"
+        app:prefix_text_color="@android:color/darker_gray"
+        android:text="经济体制改革是全面深化改革的重点，其核心问题在于处理好政府和市场的关系，使市场在资源配置中起决定性作用和更好发挥政府作用"/>
+
+    <me.parade.study.view.CombineTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="5dp"
+        android:layout_gravity="center_horizontal"
+        app:prefix="第一行的内容\n"
+        app:middle_text="第二行的内容\n"
+        app:middle_text_color="@android:color/darker_gray"
+        android:text="第三行的内容"/>
+
+
+</LinearLayout>

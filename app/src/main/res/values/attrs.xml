@@ -50,4 +50,61 @@
         <attr name="tag_interval_between_horizontal" format="dimension"/>
         <attr name="tag_interval_between_vertical" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="KGSlidingMenu">
+        <attr name="menuRightMargin" format="dimension"/>
+    </declare-styleable>
+
+    <!--组合TextView，分左中右-->
+    <declare-styleable name="CombineTextView">
+        <attr name="android:text" />
+        <!--文字的前缀，只支持字符串-->
+        <attr name="prefix" format="string|reference" />
+        <!--  文字前缀的字体大小  -->
+        <!--<attr name="prefix_text_size" format="dimension"/>-->
+        <!--前缀文字的颜色，默认是红色-->
+        <attr name="prefix_text_color" format="color|reference" />
+        <!-- 中间文字  -->
+        <attr name="middle_text" format="string"/>
+        <!-- 分隔符颜色  -->
+        <attr name="middle_text_color" format="color"/>
+        <!-- 从第二行开始，左边需要空出几个字符的距离  -->
+        <attr name="rest_intent_space" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="StyleTextView">
+        <!--<attr name="textSolidColor" format="color" />-->
+        <!-- 边框颜色 -->
+        <attr name="textStrokeColor" format="color" />
+        <!-- 边框大小  -->
+        <attr name="textStrokeWidth" format="dimension" />
+        <attr name="textNoLeftStroke" format="boolean"/>
+        <attr name="textNoRightStroke" format="boolean"/>
+        <attr name="textNoTopStroke" format="boolean"/>
+        <attr name="textNoBottomStroke" format="boolean"/>
+
+        <!-- 圆角角度 -->
+        <attr name="textRadius" format="dimension" />
+        <!-- 左上  -->
+        <attr name="textLeftTopRadius" format="dimension" />
+        <!-- 左下  -->
+        <attr name="textLeftBottomRadius" format="dimension" />
+        <!-- 右上  -->
+        <attr name="textRightTopRadius" format="dimension" />
+        <!-- 右下  -->
+        <attr name="textRightBottomRadius" format="dimension" />
+
+        <attr name="textDrawable" format="reference" />
+        <!-- 正常状态下字体颜色  -->
+        <attr name="textNormalTextColor" format="color" />
+        <!-- 选择状态下字体颜色  -->
+        <attr name="textSelectedTextColor" format="color" />
+
+        <!-- 按下或者选择状态下背景色  -->
+        <attr name="textPressedSolidColor" format="color"/>
+        <!-- 正常状态下背景色  -->
+        <attr name="textNormalSolidColor" format="color"/>
+        <!-- 是否启用选择模式  -->
+        <attr name="textIsSelected" format="boolean" />
+    </declare-styleable>
 </resources>

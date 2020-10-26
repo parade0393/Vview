@@ -2,16 +2,13 @@ package me.parade.study.view
 
 import android.animation.ObjectAnimator
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
-import android.widget.DatePicker
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
@@ -41,6 +38,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnCancelShapeChange.setOnClickListener(this)
         btnTime.setOnClickListener(this)
         btnTest.setOnClickListener(this)
+        btnSliding.setOnClickListener(this)
+        btnCombineText.setOnClickListener(this)
+        btnQQ.setOnClickListener(this)
+        btnVertical.setOnClickListener(this)
+        btnViewTouch.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -81,7 +83,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                animator.duration = 2000
                animator.interpolator = DecelerateInterpolator()
                animator.addUpdateListener {
-                   val animatedValue = it.animatedValue as Float
+                   val animatedValue = (it.animatedValue as Float).toInt()
                    progress.updateProgress(animatedValue)
                }
                animator.start()
@@ -118,6 +120,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
            }
            R.id.btnTest->{
                startActivity(Intent(this,TestActivity::class.java))
+           }
+           R.id.btnSliding->{
+               startActivity(Intent(this,SlidingMenuCaseActivity::class.java))
+           }
+           R.id.btnCombineText->{
+            startActivity(Intent(this,TextViewActivity::class.java))
+           }
+           R.id.btnQQ->{
+               startActivity(Intent(this,QQCaseActivity::class.java))
+           }
+           R.id.btnVertical->{
+               startActivity(Intent(this,VerticalDragDemoActivity::class.java))
+           }
+           R.id.btnViewTouch->{
+               startActivity(Intent(this,ViewTouchDemoActivity::class.java))
            }
        }
     }

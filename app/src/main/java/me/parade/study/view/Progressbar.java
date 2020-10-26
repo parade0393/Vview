@@ -92,11 +92,11 @@ public class Progressbar extends View {
 
         //画进度弧
         progressRect.set(mBoardWidth/2,mBoardWidth/2,getWidth()-mBoardWidth/2,getHeight()-mBoardWidth/2);
-        canvas.drawArc(progressRect,0f,mCurrentProgress*360,false,progressPaint);
+        canvas.drawArc(progressRect,0f,mCurrentProgress/100*360,false,progressPaint);
 
 
         //画文字
-       String content = ((int)(mCurrentProgress*100)) +"%";
+       String content = ((int)(mCurrentProgress)) +"%";
        textPaint.getTextBounds(content,0,content.length(),textBound);
         int dx = getWidth()/2-textBound.width()/2;
         Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
@@ -114,7 +114,12 @@ public class Progressbar extends View {
         return (int) (spValue*scaledDensity+0.5f);
     }
 
-    public synchronized void updateProgress(float percent){
+    public synchronized void updateProgress(int percent){
+        if (percent>100){
+            percent = 100;
+        }else if (percent<0){
+            percent = 0;
+        }
         this.mCurrentProgress = percent;
         invalidate();
     }

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewTouchDemoActivity">
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:text="dispatchTouchEvent返回true的情况下，不会执行任何事件，因为没有执行super方法"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <me.parade.study.view.TouchViewDemo
+                android:id="@+id/viewTouch"
+                android:background="@color/colorAccent"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:id="@+id/viewAction"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="down:0->up:1->move:2->cancel:3"/>
+
+            <TextView
+                android:text="正常情况下"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <me.parade.study.view.TouchViewTrueDemo
+                android:id="@+id/viewTouchTrue"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:text="onTouch->true的情况下,没有执行super方法，而click是在onTouch的up事件执行的，所以click不会执行"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/tvTouchTrue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <me.parade.study.view.TouchViewDemo
+                android:id="@+id/viewTouchListener"
+                android:background="@color/colorPrimary"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:text="onTouchListener->true的情况下"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+               android:id="@+id/tvTouchListener"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

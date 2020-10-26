@@ -8,16 +8,27 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:focusable="true">
 
 
         <Button
-            android:id="@+id/btnTest"
-            android:text="test"
+            android:id="@+id/btnViewTouch"
+            android:text="viewtouch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+        <Button
+            android:id="@+id/btnTest"
+            android:text="flowLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnViewTouch"/>
 
 
          <me.parade.study.view.QQStepView
@@ -36,6 +47,8 @@
             android:id="@+id/etMax"
             android:inputType="number"
             android:layout_width="60dp"
+            android:textSize="14sp"
+            android:hint="最大值"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/stepView"
             app:layout_constraintBottom_toBottomOf="@+id/stepView"
@@ -45,6 +58,8 @@
         <EditText
             android:id="@+id/etCurrent"
             android:layout_width="60dp"
+            android:hint="当前值"
+            android:textSize="14sp"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@+id/stepView"
             app:layout_constraintBottom_toBottomOf="@+id/stepView"
@@ -182,6 +197,41 @@
             app:layout_constraintStart_toStartOf="parent"
             android:text="time"
             app:layout_constraintTop_toBottomOf="@+id/ratingbar"/>
+
+        <Button
+            android:id="@+id/btnSliding"
+            android:text="sliding"
+            app:layout_constraintTop_toBottomOf="@+id/btnTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <Button
+            android:id="@+id/btnCombineText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnSliding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="combineText"/>
+
+        <Button
+            android:id="@+id/btnQQ"
+            android:text="QQ"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnCombineText"/>
+
+        <Button
+            android:id="@+id/btnVertical"
+            android:text="verticalDrag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnQQ"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

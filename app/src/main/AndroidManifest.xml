@@ -11,8 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <activity android:name=".TestActivity"/>
-        <activity android:name=".ViewPagerActivity"/>
+        <activity android:name=".ViewTouchDemoActivity"></activity>
+        <activity android:name=".VerticalDragDemoActivity" />
+        <activity android:name=".TextViewActivity" />
+        <activity android:name=".QQCaseActivity" />
+        <activity android:name=".SlidingMenuCaseActivity" />
+        <activity android:name=".TestActivity" />
+        <activity android:name=".ViewPagerActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
