@@ -59,6 +59,9 @@ public class VerticalDragListView extends FrameLayout {
 
 
     float mDownY;
+    //两种情况拦截：
+    //1.菜单打开的时候看定拦截
+    //2.菜单没打开的时候并且列表滑动到顶部的时候
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {
         if (mMenuIsOpen){

@@ -24,7 +24,7 @@
             android:padding="16dp">
 
             <TextView
-                android:text="dispatchTouchEvent返回true的情况下，不会执行任何事件，因为没有执行super方法"
+                android:text="dispatchTouchEvent返回true的情况下，不会执行任何事件，因为没有执行super方法,view的onTouchEvent默认范围true(消耗事件)，除非它是不可点击的(clickable和longClickable同时为false)"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

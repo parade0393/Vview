@@ -7,7 +7,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="Widget.AppTheme.MyView" parent="">
+    <style name="Widget.AppTheme.MyView" parent="AppTheme">
         <item name="android:background">@color/gray_400</item>
         <item name="exampleColor">@color/light_blue_400</item>
     </style>
