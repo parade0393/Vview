@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+        <activity android:name=".VpTransferActivity"></activity>
         <activity android:name=".ViewTouchDemoActivity" />
         <activity android:name=".VerticalDragDemoActivity" />
         <activity android:name=".TextViewActivity" />

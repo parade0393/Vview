@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnQQ.setOnClickListener(this)
         btnVertical.setOnClickListener(this)
         btnViewTouch.setOnClickListener(this)
+        btnTVp.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -135,6 +136,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
            }
            R.id.btnViewTouch->{
                startActivity(Intent(this,ViewTouchDemoActivity::class.java))
+           }
+           R.id.btnTVp->{
+               startActivity(Intent(this,VpTransferActivity::class.java))
            }
        }
     }
