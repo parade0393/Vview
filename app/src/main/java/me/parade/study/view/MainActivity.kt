@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         btnVertical.setOnClickListener(this)
         btnViewTouch.setOnClickListener(this)
         btnTVp.setOnClickListener(this)
+        btnChange.setOnClickListener(this)
+        btnChangeRight.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -139,6 +141,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
            }
            R.id.btnTVp->{
                startActivity(Intent(this,VpTransferActivity::class.java))
+           }
+           R.id.btnChange->{
+               btnStyle.isSelected = !btnStyle.isSelected
+           }
+           R.id.btnChangeRight->{
+               btnStyleRight.isSelected =  !btnStyleRight.isSelected
            }
        }
     }

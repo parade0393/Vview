@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:focusableInTouchMode="true"
         android:focusable="true">
 
@@ -241,6 +242,55 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="viewpager"/>
+
+        <me.parade.study.view.StyleTextView
+            android:id="@+id/btnStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="左边"
+            android:padding="16dp"
+            app:textRadius="4dp"
+            app:textIsSelected="true"
+            app:textNormalSolidColor="@android:color/white"
+            app:textPressedSolidColor="@android:color/holo_blue_bright"
+            app:textNormalTextColor="@android:color/black"
+            app:textSelectedTextColor="@android:color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintTop_toBottomOf="@+id/btnTVp"/>
+
+        <Button
+            android:id="@+id/btnChange"
+            android:text="改变选中状态"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/btnStyle"
+            app:layout_constraintStart_toEndOf="@+id/btnStyle"
+            app:layout_constraintEnd_toStartOf="@+id/btnStyleRight"/>
+
+        <me.parade.study.view.StyleTextView
+            android:id="@+id/btnStyleRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="右边"
+            android:padding="16dp"
+            app:textRadius="4dp"
+            app:textIsSelected="true"
+            app:textNormalSolidColor="@android:color/darker_gray"
+            app:textPressedSolidColor="@android:color/holo_green_dark"
+            app:textNormalTextColor="@android:color/black"
+            app:textSelectedTextColor="@android:color/white"
+          app:layout_constraintStart_toEndOf="@+id/btnChange"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintTop_toBottomOf="@+id/btnTVp"/>
+        <Button
+            android:id="@+id/btnChangeRight"
+            android:text="改变选中状态"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/btnStyle"
+            app:layout_constraintStart_toEndOf="@+id/btnStyleRight"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
